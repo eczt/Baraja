@@ -1,0 +1,68 @@
+package baraja;
+import java.util.*;
+import java.util.Random;
+
+
+public class Deck  {
+	String [] paloDeck = Card.palo;
+	String [] valorDeck = Card.valor;
+
+	public final int numCartas = paloDeck.length * valorDeck.length;
+	Card deck[] = new Card[numCartas];
+	ArrayList c = new ArrayList();
+	public Random rand;
+
+	public Deck () { //inicializa la baraja
+		ArrayList c = new ArrayList(Arrays.asList(deck));
+		int cartasCreadas = 0;
+		for (int i=0; i < valorDeck.length; i++) {
+			for (int j=0; j < paloDeck.length; j++) {
+			deck[cartasCreadas] = new Card (valorDeck[i], paloDeck[j]);
+		++cartasCreadas;
+		}
+	}
+}
+
+	// mezcla las cartas
+	public void shuffle() {
+		System.out.println("Se mezcló el Deck.");
+		Collections.shuffle(Arrays.asList(deck));
+		System.out.println(Arrays.toString(deck));
+	}
+	
+	//elige la primer carta
+	public void head() {
+		Card primerCarta = deck[0];
+		System.out.println("La primer carta es: " + primerCarta);
+		c = new ArrayList(Arrays.asList(deck));
+		c.remove(primerCarta);
+		System.out.println("Quedan " + c.size() + " cartas.");
+	}
+	
+	//elige una carta al azar
+	public void pick() {
+		Random rand = new Random();
+		System.out.println("La carta al azar fué: " + c.get(rand.nextInt(c.size())));
+		c.remove(c.get(rand.nextInt(c.size())));
+		System.out.println("Quedan " + c.size() + " cartas.");
+	}
+	
+	//elige las primeras 5 cartas
+	public void hand() {
+		Card cartaUno = deck[1];
+		Card cartaDos = deck[2];
+		Card cartaTres = deck[3];
+		Card cartaCuatro = deck[4];
+		Card cartaCinco = deck[5];
+		Card[] mano = {cartaUno, cartaDos, cartaTres, cartaCuatro, cartaCinco};
+		System.out.println(Arrays.asList(mano));
+		c.remove(cartaUno);
+		c.remove(cartaDos);
+		c.remove(cartaTres);
+		c.remove(cartaCuatro);
+		c.remove(cartaCinco); 
+		System.out.println("Quedan " + c.size() + " cartas.");
+	}
+	
+	
+	}
