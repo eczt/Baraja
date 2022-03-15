@@ -1,0 +1,13 @@
+package baraja;
+
+public class Poker {
+
+	public static void main(String args[]) {
+		Deck a = new Deck();
+
+		a.shuffle();
+		a.head();
+		a.pick();
+		a.hand();
+	}
+}
